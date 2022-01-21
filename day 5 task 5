@@ -1,0 +1,52 @@
+// C++ implementation of above approach
+#include <bits/stdc++.h>
+using namespace std;
+
+
+// Function to rotate the matrix 90 degree clockwise
+void Clockwise90()
+{
+  int N;
+  cout << "\nInput the size of matrix: ";
+  cin >> N;
+  
+  int arr[N][N];
+  int i,j;
+  cout << "\nInput the matrix \n";
+  for(i = 0; i < N; i++)
+  {
+    for(j = 0; j < N; j++)
+    {
+      cin >> arr[i][j];
+    }
+  }
+  cout << "\n Entered matrix is \n";
+  for(i = 0; i < N; i++)
+  {
+    for(j = 0; j < N; j++)
+    {
+     cout<< arr[i][j]<<"\t";
+    }
+    cout<<endl;
+  }
+	// printing the matrix on the basis of
+	// observations made on indices.
+  cout<< "Rotated matrix is "<<endl; 
+	for (int j = 0; j < N; j++)
+	{
+		for (int i = N - 1; i >= 0; i--)
+			cout << arr[i][j] << "\t";
+		cout << '\n';
+	}
+}
+
+// Driver code
+int main()
+{
+
+	Clockwise90();
+
+	return 0;
+}
+
+
