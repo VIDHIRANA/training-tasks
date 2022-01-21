@@ -1,0 +1,150 @@
+// C++ program to count occurrences of a given
+// character
+#include <iostream>
+#include <string>
+using namespace std;
+
+ 
+
+class StringUtlis {
+
+  
+    // store the input of user
+    int choice, start, end;
+    string pattern;
+    char c;
+  
+   public: static int charCount(string str, char c);
+   public: static string subString(string str, int start, int end);
+   public: static bool hasPattern(string str, string pattern);
+   public: static bool allWordsContainChar(string str, char c);
+   public: static string reverse(string str);
+   public: static string reverseVowel(string str);
+  
+};
+
+
+    // Function that return count of the given character in the string
+    int StringUtlis:: charCount(string str, char c)
+    {
+      
+      // Count variable
+      int res = 0;
+
+      for (int i=0;i<str.length();i++)
+
+        // checking character in string
+        if (str[i] == c)
+          res++;
+
+      return res;
+    }
+
+    //method to find substring 
+    string StringUtlis:: subString(string str, int start, int end){
+        
+    // temporary string to hold the value of substring 
+      string subS = str.substr(start, end);
+      return subS;
+    }
+
+    
+
+     bool StringUtlis:: hasPattern(string str, string pattern){
+      
+      int M = pattern.length();
+      int N = str.length();
+
+      /* A loop to slide pat[] one by one */
+      for (int i = 0; i <= N - M; i++) {
+          int j;
+
+          /* For current index i, check for pattern match */
+          for (j = 0; j < M; j++)
+              if (str[i + j] != pattern[j])
+                  break;
+
+          if (j == M)
+              return true;
+      }
+
+      return false;
+    
+    }
+
+     bool StringUtlis:: allWordsContainChar(string str, char c){
+      
+      return 0;
+    }
+
+     string StringUtlis:: reverse(string str){
+      
+  
+      int n=str.length();
+      int start=0,end=n-1;
+      while(start<end)
+      {
+          str[start]^=str[end];
+          str[end]^=str[start];
+          str[start]^=str[end];
+          start++;
+          end--;
+      }
+     
+      return str;
+
+    }
+
+    // utility function to check for vowel
+    static bool isVowel(char c)
+    {
+        return (c=='a' || c=='A' || c=='e' ||
+                c=='E' || c=='i' || c=='I' ||
+                c=='o' || c=='O' || c=='u' ||
+                c=='U');
+    }
+
+    // Function to reverse order of vowels
+     string StringUtlis:: reverseVowel(string str)
+    {
+        // Start two indexes from two corners
+        // and move toward each other
+        int i = 0;
+        int j = str.length()-1;
+        
+        while (i < j)
+        {
+            if (!isVowel(str[i]))
+            {
+                i++;
+                continue;
+            }
+            if (!isVowel(str[j]))
+            {
+                j--;
+                continue;
+            }
+
+            // swapping
+            swap(str[i], str[j]);
+
+            i++;
+            j--;
+        }
+
+        return str;
+    }
+
+
+// Driver code
+int main()
+{
+  
+	string s;
+
+  cout<< " enter the string to work with " << endl;
+  cin >>s;
+  // call the class for the further actions 
+  
+	return 0;
+}
