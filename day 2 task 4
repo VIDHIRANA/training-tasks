@@ -1,0 +1,24 @@
+/*Write a program to find the smallest number divisible by all the numbers between 1 to 9. */
+
+
+
+// C++ program to find smallest number evenly divisible by all numbers 1 to 9
+#include<bits/stdc++.h>
+using namespace std;
+
+// Function returns the lcm of all no from 1 to 9 
+int lcm()
+{
+    int smallestDivisibleNum = 1;    
+    for (int i = 1; i <= 9; i++)
+        smallestDivisibleNum = (smallestDivisibleNum * i)/(__gcd(smallestDivisibleNum, i));
+    return smallestDivisibleNum;
+}
+
+
+int main() 
+{
+ 
+    cout << "smallest numver divisible by all number from 1 to 9 is: "<<lcm();
+    return 0;
+}
