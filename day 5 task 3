@@ -1,0 +1,97 @@
+/* Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the following properties:
+Integers in each row are sorted from left to right.
+The first integer of each row is greater than the last integer of the previous row.
+*/
+#include <bits/stdc++.h>
+using namespace std;
+
+
+
+
+// find an element in a 1-D array
+bool checkArray(int arr[], int K,int N)
+{
+	int smaller = 0;
+	int larger = N - 1;
+	while (smaller <= larger) {
+    // cp is the center point
+		int cp = smaller + (larger - smaller) / 2;
+
+		// if element found return true
+		if (arr[cp] == K)
+			return true;
+
+		// if cp is  less than K then skip the left part of the array else skip the right part
+		if (arr[cp] < K)
+			smaller = cp + 1;
+		else
+			larger = cp - 1;
+	}
+
+	// if not found return false
+	return false;
+}
+
+// search element in a matrix 
+bool search( )
+{  int N,M, arr[M][N];
+int K;
+  cout << "\nInput the number of rows : ";
+  cin >> M;
+  cout << "\nInput the number of columns : ";
+  cin >> N;
+  int i,j;
+  cout << "\nInput the matrix \n";
+  for(i = 0; i < M; i++)
+  {
+    for(j = 0; j < N; j++)
+    {
+      cin >> arr[i][j];
+    }
+  }
+  cout << "\nEntered matrix is \n";
+  for(i = 0; i < M; i++)
+  {
+    for(j = 0; j < N; j++)
+    {
+      cout<< arr[i][j]<<"\t";
+    }
+    cout<<"\n";
+  }
+  cout<<"Enter the no to be found"<<endl;
+  cin>> K;
+	int smaller = 0;
+	int larger = M - 1;
+	while (smaller <= larger) {
+		int cp = smaller + (larger - smaller) / 2;
+
+		//check range and call search
+		if (K >= arr[cp][0]
+			&& K <= arr[cp][N - 1])
+			return checkArray(arr[cp], K,N);
+
+		// if the element is less then the
+		// starting element of that row then
+		// search in upper rows else search
+		// in the smallerer rows
+		if (K < arr[cp][0])
+			larger = cp - 1;
+		else
+			smaller = cp + 1;
+	}
+
+	// if not found
+	return false;
+}
+
+// Driver code
+int main()
+{ int M, N;
+	int arr[M][N];
+  //particular row to search
+	int K;
+	if (search())
+		cout << "Found" << endl;
+	else
+		cout << "Not found" << endl;
+}
