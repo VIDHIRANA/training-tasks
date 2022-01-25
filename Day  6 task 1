@@ -1,0 +1,203 @@
+protocol Person{
+
+    var name: String { get set }
+
+}
+
+//Constituency
+
+class Constituency{  
+    private var name: String
+    private var mpOfConstituency: MP
+
+    init(name:String, mpOfConstituency:MP) {
+
+        self.name = name 
+        self.mpOfConstituency = mpOfConstituency
+    }
+
+
+
+    func getConstituencyInfo() {
+        //Return Constituency details
+        print ("\(self.mpOfConstituency.name) has won from the \(name) Constituency \n" )
+
+    }
+}
+
+//vehicle 
+
+class Vehicle{
+ private var vModel: String
+ private var vName : String
+ init(vModel: String, vName : String){
+   self.vModel = vModel
+   self.vName = vName
+ }
+}
+
+//aircraft
+class Aircraft : Vehicle{
+  private var aircraftType : String
+
+  init(vModel: String, vName:String, aircraftType:String) {
+        
+        self.aircraftType = aircraftType
+        super.init(vModel: vModel, vName: vName)
+    }
+
+}
+
+//Car
+class Car: Vehicle{
+    
+    private var color:String
+
+    init(vModel: String, vName:String, color:String) {
+        
+        self.color = color
+        super.init(vModel: vModel, vName: vName)
+    }
+}
+//Driver
+class Driver: Person {
+    internal var name: String
+    init(name:String) {
+        self.name = name
+
+    }
+
+    func getDetails(){
+        //return details of driver
+        print ("Name of driver \(name) \n")
+
+    }
+
+}
+
+//CarDriver
+class CarDriver: Driver {
+    private var yearsOfCarDrivingExperience:Int
+
+    init(name:String, yearsOfCarDrivingExperience:Int) {
+
+        self.yearsOfCarDrivingExperience = yearsOfCarDrivingExperience
+        super.init(name: name)
+    }
+    override func getDetails(){
+        //return details of driver
+         print ("Name of driver \(name) with experience of \(yearsOfCarDrivingExperience) \n")
+    }
+
+}
+ 
+func exceedingLimit(spendingLimit:Int, spentAmount: Int) -> Bool {
+      if (spendingLimit < spentAmount){
+        return true
+      } 
+    }
+
+// Commisioner 
+class Commisioner:Person{
+    internal var name: String
+    var mp:MP
+    var mini : Minister
+    var pm:PM
+    
+    init(name:String, mp: MP?, mini : Minister?, pm: PM?) {
+        self.mp = MP
+        self.mini = Minister 
+        self.pm = PM
+        self.name = name
+        
+    }
+    func canArrest(){
+        //Return details of MP
+        if (exceedingLimit(self.mp.spendingLimit, self.mp.spentAmount)){
+          print( "\n \(self.mp.name) is arrested for over spending ")
+        }
+        
+        else if (exceedingLimit(self.mini.spendingLimit, self.mini.spentAmount) && self.pm.permision){
+          print( "\n \(self.mini.name) is arrested for over spending ")
+        }
+      
+
+    }
+
+}
+//MP
+class MP:Person{
+    internal var name: String
+    internal var spentAmount: Int
+    internal var spendingLimit:Int
+    init(name:String, spentAmount : Int) {
+
+        self.name = name
+        self.spentAmount = spentAmount
+        self.spendingLimit = 100000
+    }
+    
+    func getDetails(){
+        //Return details of MP
+        print ("\(name) is an MP and has spent \(spentAmount)")
+    }
+
+}
+
+//Minister
+class Minister: MP {
+    internal var car:Car
+     var assignedDriver:CarDriver
+
+    init(name:String,car:Car,assignedDriver:CarDriver, spentAmount : Int) {
+        self.car = car
+        self.assignedDriver = assignedDriver
+        super.init(name: name, spentAmount : spentAmount)
+        self.spendingLimit = 1000000
+
+    }
+
+    override func getDetails(){
+      // Return details of minister
+        print ("\(name) is an MP and has spent \(spentAmount) and has \(car) with assigned Driver \(assignedDriver)")
+    }
+
+}
+
+//PM
+class PM:Minister{
+    var mp: MP
+    
+    internal var aircraft: Aircraft
+     
+    init(name: String, car: Car, aircraft: Aircraft, assignedDriver: CarDriver, spentAmount: Int ) {
+        self.mp = mp
+        self.aircraft = aircraft
+        super.init(name: name, car: car,  assignedDriver: assignedDriver, spentAmount : spentAmount)
+
+        self.spendingLimit = 10000000
+    }
+     
+      func permission () -> Bool {
+        if (exceedingLimit(spendingLimit, spentAmount)){
+          return true
+        }
+      }
+    
+   override func getDetails(){
+        // Return details of PM
+         print ("\(name) is PM and has spent \(spentAmount) and has \(car) with assigned Driver \(assignedDriver) along with \(aircraft)")
+    }
+
+}
+
+//Indian Politics
+
+
+    var noidaConstituency = Constituency(name: "Noida", mpOfConstituency: MP(name: "Hritik", spentAmount : 200012))
+    noidaConstituency.getConstituencyInfo()  
+
+    var ministerOfDelhi = Minister(name: "Arvind Kejrival", car: Car(vModel: "XNX2012", vName: "Dzire", color: "red"), assignedDriver: CarDriver(name: "XYZ Driver", yearsOfCarDrivingExperience: 5), spentAmount : 200012)
+
+   var PMOIndia = PM(name: "Narendra Modi", car: Car(vModel: "WBD5854", vName: "Mercedes-Benz", color: "purple"), aircraft: Aircraft(vModel: "VEERBHADRA", vName: "Mercedes-Benz", aircraftType: "Fighter jet"),assignedDriver: CarDriver(name: "abcDriver", yearsOfCarDrivingExperience: 5), spentAmount : 200012)
+
