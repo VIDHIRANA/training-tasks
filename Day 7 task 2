@@ -1,0 +1,42 @@
+/*public class Employee
+{    
+    String name;  
+    int salary;  
+    Boolean married;
+    String grade = null;
+    Address address;
+    List<String> mobileNumbers;
+    Map<String,Object> Address;
+}
+
+public class Address
+{
+ String primaryAddress;
+ String secondaryAddress;
+ String country;
+ String state;
+} */
+
+
+JSON = {
+        "Employee" = {
+                    "name" : " Vidhi  ",
+                    "salary" : 90000,
+                    "married" : false,
+                    "grade" : null,
+                    "address": {
+                                "primaryAddress" : "ABC",
+                                "secondaryAddress" : "XYZ",
+                                "country" : "India",
+                                "state" : "Delhi"
+                    },
+                    "mobileNumbers" : [788584, 8545954, 8542545, 54285361],
+                    "address": {
+                                "primaryAddress" : "ABC",
+                                "secondaryAddress" : "XYZ",
+                                "country" : "India",
+                                "state" : "Delhi"
+                    }
+            
+        }
+}
