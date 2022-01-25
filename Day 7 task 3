@@ -1,0 +1,45 @@
+/*
+Convert the JSON into class
+
+{
+   "firstName":"John",
+   "lastName":"Smith",
+   "age":25,
+   "address":{
+      "streetAddress":"21 2nd Street",
+      "city":"New York",
+      "state":"NY",
+      "postalCode":10021
+   },
+   "phoneNumbers":[
+      {
+         "type":"home",
+         "number":"212 555-1234"
+      },
+      {
+         "type":"fax",
+         "number":"646 555-4567"
+      }
+   ]
+}*/
+
+class Employee{
+
+var firstName : String = "John"
+var lastName :  String = "Smith"
+var age : Int = 25
+Address address
+var phoneNumbers[type: String, number: String]: [   
+        {type:"home", number:"212 555-1234"}, 
+         {type:"fax", number:"646 555-4567"}
+         ]
+}
+
+class Address{
+
+var streetAddress : String = "21 2nd Street"
+var city : String = "New York"
+var state : String = "NY"
+var postalCode : Int = 10021
+
+}
